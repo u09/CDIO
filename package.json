@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/felixge/node-ar-drone/issues"
   },
-  "homepage": "https://github.com/felixge/node-ar-drone#readme"
+  "homepage": "https://github.com/felixge/node-ar-drone#readme",
+  "dependencies": {
+    "opencv": "^6.0.0"
+  }
 }
