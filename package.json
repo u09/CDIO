@@ -1,0 +1,19 @@
+{
+  "name": "node_ar_drone",
+  "version": "1.0.0",
+  "description": "Node AR Drone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/felixge/node-ar-drone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felixge/node-ar-drone/issues"
+  },
+  "homepage": "https://github.com/felixge/node-ar-drone#readme"
+}
