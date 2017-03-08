@@ -1,8 +1,9 @@
 var arDrone = require('ar-drone');
 var fs = require('fs');
 var http = require('http');
-var pngStream = arDrone.createClient().getPngStream();
+var open = require('opencv');
 
+var pngStream = arDrone.createClient().getPngStream();
 pngStream.on('error',console.log).on('data',function(pngBuffer) {
     var img = 'data:image/png;base64,'+new Buffer(pngBuffer).toString('base64');
     var data = img.replace(/^data:image\/\w+;base64,/, "");
@@ -20,3 +21,5 @@ var server = http.createServer(function(req, res) {
 server.listen(8080, function() {
     console.log('Serving latest png on port 80 ...');
 });
+
+var cv = require('/node_modules/opencv/lib/opencv');
