@@ -1,14 +1,51 @@
 var arDrone = require('ar-drone');
+var client=arDrone.createClient();
+var cv = require('opencv');
+
+var s = new cv.ImageStream();
+var buff;
+
+s.on('data',function(matrix){
+	console.log("test");
+	buff = new Buffer(matrix.toString('byte64'));
+	/*
+	cv.readImage(buff,function(err,im){
+		console.log("test");
+		if (err) throw err;
+		if (im.width() < 1 || im.height() < 1) throw new Error('Image has no size');
+		buff=matrix.toBuffer();
+
+		im.detectObject("face-detection.xml", {}, function(err, faces){
+			if(err) throw err;
+			
+			for(var i = 0; i < faces.length; i++){
+				var face = faces[i];
+				im.ellipse(face.x+face.width/2,face.y+face.height/2,face.width/2,face.height/2);
+			}
+			
+			im.save('image2.png');
+			console.log('Image saved to image2.png');
+		});
+	});
+	*/
+});
+
+client.getPngStream().pipe(s);
+/*
+var arDrone = require('ar-drone');
 var express = require('express');
 var cv = require('opencv');
 var app = express();
-/*
+
 var video = arDrone.createClient().getVideoStream();
+var win = new cv.NamedWindow('Video', 0);
 
 video.on('data',function(data){
-	
+	setInterval(function() {
+		win.show(data);
+	}, 20);
 });
-*/
+
 app.use(express.static('www'));
 app.set('view engine','ejs');
 app.get('/', function (req, res) {
