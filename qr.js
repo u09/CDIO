@@ -1,7 +1,6 @@
 var cv = require('opencv');
-var PNG = require('png-js');
 
-cv.readImage("qr-test.png", function(err, im){
+cv.readImage("image.png", function(err, im){
 	if (err) throw err;
 	if (im.width() < 1 || im.height() < 1) throw new Error('Image has no size');
 
