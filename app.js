@@ -1,9 +1,9 @@
 var arDrone = require('ar-drone');
 var client=arDrone.createClient();
 var cv = require('opencv');
-var im = arDrone.createClient().getPngStream();
+var im = client.getPngStream();
 var lastPng;
-var check=false;
+var check=true;
 var land=false;
 var stop=false;
 var antal=0;
@@ -15,6 +15,7 @@ setInterval(function(){
 im.on('error',console.log).on('data',function(pngBuffer){
 	if(check)
 	{
+		console.log("Battery: "+client.battery());
 		if(land)
 		{
 			client.land();
