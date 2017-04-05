@@ -25,33 +25,8 @@ try {
         camera.read(function(err, im) {
             if (err) throw err;
             if (im.width() < 1 || im.height() < 1) throw new Error('Image has no size');
-//            im.inRange(upper_threshold,lower_threshold);
-
-			out = new cv.Matrix(im.height(),im.width());
-			im.convertGrayscale();
-			im_canny = im.copy();
-			im_canny.canny(lowThresh, highThresh);
-			im_canny.dilate(nIters);
-
-			contours = im_canny.findContours();
-
-			for (i = 0; i < contours.size(); i++) {
-
-    if (contours.area(i) < minArea) continue;
-
-    var arcLength = contours.arcLength(i, true);
-    contours.approxPolyDP(i, 0.01 * arcLength, true);
-
-    switch(contours.cornerCount(i)) {
-      case 0:
-        out.drawContour(contours, i, RED);
-        break;
-    }
-  }
-			
-			
-			
-            window.show(out);
+            im.inRange(upper_threshold,lower_threshold);
+            window.show(im);
             window.blockingWaitKey(0, 50);
         });
     }, 50);
